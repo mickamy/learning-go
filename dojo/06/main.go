@@ -42,4 +42,8 @@ func scanFileAndOut(filename string) {
 			fmt.Printf("%s\n", line)
 		}
 	}
+	if err := scanner.Err(); err != nil {
+		fmt.Println("Error scanning file:", err)
+		os.Exit(1)
+	}
 }
