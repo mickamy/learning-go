@@ -1,0 +1,16 @@
+services:
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: recordings
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./misc/mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: mysqladmin ping -h localhost -u root -ppassword
+      interval: 5s
+      retries: 10
